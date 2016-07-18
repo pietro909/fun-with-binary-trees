@@ -1,0 +1,3 @@
+enablePlugins(ScalaJSPlugin)
+
+scalaJSUseRhino := false
