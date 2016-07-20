@@ -1,5 +1,7 @@
 package tutorial.tree
 
+import scala.xml._
+
 /**
  * Binary tree:
  * a set can be empty or not
@@ -32,6 +34,15 @@ object BinaryTree {
     case Empty() => second
     case NonEmpty(elem: Int, left: IntSet, right: IntSet) =>
       incl(union(union(left, right), second), elem)
+  }
+
+  def descendants(set: IntSet): Int = 1
+
+  def toHtml(set: IntSet, descendants: Int = 0): xml.Elem = set match {
+    case Empty() =>
+      <div class="node empty"><h1>[]</h1></div>
+    case NonEmpty(elem: Int, left: IntSet, right: IntSet) =>
+      <div class="node"><h1>{elem.toString}</h1><div class="children">{toHtml(left)} {toHtml(right)}</div></div>
   }
 
 }
