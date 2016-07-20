@@ -47,9 +47,11 @@ object BinaryTree {
 
   def toHtml(set: IntSet, levels: Int = 0): xml.Elem = set match {
     case Empty() =>
-      <div class="node empty"><h1>[]</h1></div>
-    case NonEmpty(elem: Int, left: IntSet, right: IntSet) =>
-      <div class="node"><h1>{elem.toString} - {descendants(set)}</h1><div class="children">{toHtml(left)} {toHtml(right)}</div></div>
+      <div class="binary-tree node empty"><h1>\u25A1</h1></div>
+    case NonEmpty(elem: Int, left: IntSet, right: IntSet) => {
+      val width = 2*(math.pow(2, descendants(set)))
+      <div class="binary-tree node" style={s"width: ${width}em;"}><h1>{elem.toString}</h1><div class="binary-tree children">{toHtml(left)} {toHtml(right)}</div></div>
+    }
   }
 
 }

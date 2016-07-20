@@ -3,14 +3,17 @@ section {
     flex-direction: row;
 }
 
-.node {
+.binary-tree {
     display: flex;
+    flex: 1 1 100%;
+}
+
+.binary-tree.node {
     flex-direction: column;
     align-items: center;
 }
-.children {
+
+.binary-tree.children {
     flex-direction: row;
-    display: flex;
-    align-content: center;
 }
 
