@@ -6,12 +6,11 @@ section {
 .node {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 .children {
     flex-direction: row;
     display: flex;
+    align-content: center;
 }
-.node {
-    display: flex;
-    flex-direction: column;
-}
+
