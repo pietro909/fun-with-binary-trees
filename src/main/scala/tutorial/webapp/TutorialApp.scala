@@ -12,8 +12,10 @@ object TutorialApp extends JSApp {
     appendPar(document.body, "Hello, world!")
     val a = NonEmpty(2, NonEmpty(5, Empty(), Empty()), NonEmpty(6, Empty(), Empty()))
     val i = incl(incl(a, 3), 7)
+    val w = NonEmpty(0, NonEmpty(76, Empty(), Empty()), NonEmpty(10, NonEmpty(15, Empty(), Empty()), NonEmpty(46, Empty(), Empty())))
     val ne = NonEmpty(12, NonEmpty(1, Empty(), Empty()), Empty())
-    val s = toHtml(union(i, ne))
+    val s = toHtml(union(w, union(i, ne)))
+    val s2 = toHtml(a)
     appendXml(document.body, s)
     println(s)
   }
