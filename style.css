@@ -1,0 +1,17 @@
+section {
+    display: flex;
+    flex-direction: row;
+}
+
+.node {
+    display: flex;
+    flex-direction: column;
+}
+.children {
+    flex-direction: row;
+    display: flex;
+}
+.node {
+    display: flex;
+    flex-direction: column;
+}
