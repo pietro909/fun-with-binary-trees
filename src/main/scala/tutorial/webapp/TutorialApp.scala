@@ -5,42 +5,34 @@ import org.scalajs.dom
 import dom.document
 import tutorial.tree.BinaryTree._
 import scala.xml
+import scala.scalajs.js.annotation.JSExport
+import org.scalajs.dom.html
 
 object TutorialApp extends JSApp {
 
-  var theTree = Empty()
+  var theTree: IntSet = Empty()
 
   def main(): Unit = {
-    appendPar(document.body, "Hello, world!")
-    val a = union(theTree, NonEmpty(2, NonEmpty(5, Empty(), Empty()), NonEmpty(6, Empty(), Empty())))
+    val a = union(Empty(), NonEmpty(2, NonEmpty(5, Empty(), Empty()), NonEmpty(6, Empty(), Empty())))
     val i = incl(incl(a, 3), 7)
     val w = NonEmpty(0, NonEmpty(76, Empty(), Empty()), NonEmpty(10, NonEmpty(15, Empty(), Empty()), NonEmpty(46, Empty(), Empty())))
-    val ne = union(NonEmpty(12, NonEmpty(1, Empty(), Empty()), Empty()), theTree)
-    drawTree()
+    theTree = union(NonEmpty(12, NonEmpty(1, Empty(), Empty()), Empty()), w)
+    drawTree(theTree)
   }
 
-  def drawTree() = {
-    val s = <div></div> //toHtml(theThree)
-    appendXml(document.body, s)
-  }
-
-  def appendXml(targetNode: dom.Node, content: xml.Elem): dom.Node = {
+  def drawTree(tree: IntSet) = {
+    val content = toHtml(tree).toString
     val newNode = document.createElement("section")
-    newNode.innerHTML = content.toString
-    targetNode.appendChild(newNode)
-    targetNode
+    newNode.innerHTML = content
+    new dom.ext.PimpedNodeList(document.body.querySelectorAll("section")).foreach( document.body.removeChild )
+    document.body.appendChild(newNode)
   }
 
-  def appendPar(targetNode: dom.Node, text: String): Unit = {
-    val parNode = document.createElement("p")
-    val textNode = document.createTextNode(text)
-    parNode.appendChild(textNode)
-    targetNode.appendChild(parNode)
-  }
-
+  @JSExport
   def addNode() = {
-    val nodeValue = document.getElementById("nodeValue").value.toInt
-    theTree = incl(theTreee, nodeValue)
+    val nodeValue = document.getElementById("nodeValue").asInstanceOf[html.Input].value.toInt
+    theTree = incl(theTree, nodeValue)
+    drawTree(theTree)
   }
 
 }
